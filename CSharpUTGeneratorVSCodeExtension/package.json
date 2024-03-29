@@ -1,0 +1,110 @@
+{
+  "name": "csharp_ut_generator",
+  "displayName": "CSharpUTGenerator",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "CSharpUTGenOpenAPI",
+      "properties": {
+        "openaiapi.type": {
+          "type": "string",
+          "default": "azure",
+          "description": "openai.api_type"
+        },
+        "openaiapi.endpoint": {
+          "type": "string",
+          "description": "openai.api_endpoint"
+        },
+        "openaiapi.version": {
+          "type": "string",
+          "default": "2023-03-15-preview",
+          "description": "openai.api_version"
+        },
+        "openaiapi.key": {
+          "type": "string",
+          "description": "openai.api_key"
+        },
+        "openaiapi.deployment_name": {
+          "type": "string",
+          "default": "gpt-35-turbo-16k",
+          "description": "openai.deployment_name"
+        },
+        "openaiapi.model_name": {
+          "type": "string",
+          "default": "gpt-35-turbo-16k",
+          "description": "openai.model_name"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "CSharpUTGenerator.startgenerate",
+        "title": "Generate UT for this function"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "CSharpUTGenerator.startgenerate",
+          "when": "editorLangId == csharp"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "CSharpUTGenerator.startgenerate",
+          "when": "editorLangId == csharp"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.2.6",
+    "fs-extra": "9.1.0",
+    "json5": "^2.2.3",
+    "langchain": "^0.0.118",
+    "openai": "^4.7.0",
+    "rxjs": "^7.8.1",
+    "vscode-languageserver-protocol": "3.17.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "5.0.4",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.78.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.36.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1"
+  },
+  "extensionDependencies": [
+    "ms-dotnettools.csharp",
+    "github.copilot-chat"
+  ]
+}

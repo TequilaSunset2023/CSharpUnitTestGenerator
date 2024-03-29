@@ -1,0 +1,6 @@
+FodyWeavers.xml
+FodyWeavers.xsd
+obj/**
+bin/**
+.CSharpUTGen/**
+.CSharpUTGenOutputCalcProj/**
